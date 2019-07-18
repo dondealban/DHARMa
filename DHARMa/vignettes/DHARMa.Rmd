@@ -9,7 +9,7 @@ vignette: >
   %\VignetteIndexEntry{Vignette for the DHARMa package}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
-abstract: "The 'DHARMa' package uses a simulation-based approach to create  readily interpretable scaled (quantile) residuals for fitted (generalized) linear mixed models. Currently supported are linear and generalized linear (mixed) models from 'lme4' (classes 'lmerMod', 'glmerMod'), 'glmmTMB' and 'spaMM', generalized additive models ('gam' from 'mgcv'), 'glm' (including 'negbin' from 'MASS', but excluding quasi-distributions) and 'lm' model classes. Moreover, externally created simulations, e.g. posterior predictive simulations from Bayesian software such as 'JAGS', 'STAN', or 'BUGS' can be processed as well. The resulting residuals are standardized to values between 0 and 1 and can be interpreted as intuitively as residuals from a linear regression. The package also provides a number of plot and test functions for typical model misspecification problems, such as over/underdispersion, zero-inflation, and residual spatial and temporal autocorrelation. \n \n \n"
+abstract: "The 'DHARMa' package uses a simulation-based approach to create  readily interpretable scaled (quantile) residuals for fitted (generalized) linear mixed models. Currently supported are linear and generalized linear (mixed) models from 'lme4' (classes 'lmerMod', 'glmerMod'), 'glmmTMB', 'spaMM' and 'GLMMadative', generalized additive models ('gam' from 'mgcv'), 'glm' (including 'negbin' from 'MASS', but excluding quasi-distributions) and 'lm' model classes. Moreover, externally created simulations, e.g. posterior predictive simulations from Bayesian software such as 'JAGS', 'STAN', or 'BUGS' can be processed as well. The resulting residuals are standardized to values between 0 and 1 and can be interpreted as intuitively as residuals from a linear regression. The package also provides a number of plot and test functions for typical model misspecification problems, such as over/underdispersion, zero-inflation, and residual spatial and temporal autocorrelation. \n \n \n"
 editor_options: 
   chunk_output_type: console
 ---
@@ -510,6 +510,13 @@ testSpatialAutocorrelation(simulationOutput = simulationOutput)
 ```
 
 The usual caveats for Moran.I apply, in particular that it may miss non-local and heterogeneous (non-stationary) spatial autocorrelation. The former should be better detectable visually in the spatial plot, or via regressions on the pattern. 
+
+## List of known residual patterns that are benign
+
+As said in the introduction of this section: not all residual patterns are a sign of a misspecified model. Specifically, there are models that are known to deliver good estimates, even if the data don't conform to model assumptions, and there are models know to be slightly biased that nevertheless have such useful properties so that their use is indicated in many situations. Below a list of such examples, i.e. where one gets residual patterns that do not indicate a prboelm 
+
+* MAR data https://github.com/florianhartig/DHARMa/issues/101
+* MLE fits of REs https://github.com/florianhartig/DHARMa/issues/103
 
 # Supported packages 
 
